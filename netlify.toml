@@ -1,21 +1,14 @@
 [build]
-command = "next build"
-base = "."
-publish = ".next"
+command="ntli build -a"
+functions=".ntli/site/netlify/functions"
+publish=".ntli/site/static"
 
-[build.environment]
-NEXT_USE_NETLIFY_EDGE = "true"
-
-[[plugins]]
-package = "@netlify/plugin-nextjs"
-
-[[redirects]]
-from = "/_next/static/*"
-to = "/static/:splat"
-status = 200
+[[headers]]
+for="/ui/*"
+[headers.values]
+Access-Control-Allow-Origin="*"
+Access-Control-Allow-Headers="*"
+Access-Control-Allow-Methods="*"
 
 [functions]
-included_files = [
-  "!node_modules/sharp/vendor/8.12.2/darwin-*/**/*",
-  "!node_modules/sharp/build/Release/sharp-darwin-*"
-]
+node_bundler = "esbuild"

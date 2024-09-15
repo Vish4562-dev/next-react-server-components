@@ -1,7 +1,4 @@
-node_modules
-.next
-*.log
-.vercel
-
 # Local Netlify folder
 .netlify
+node_modules
+.ntli
