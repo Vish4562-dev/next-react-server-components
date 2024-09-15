@@ -1,31 +1,21 @@
 [build]
+command = "next build"
+base = "."
+publish = ".next"
 
-     command: npm run build
-     commandOrigin: config
-     environment:
-       - DYNAMIC_CSP_BUILD_TOKEN
-       - NEXT_PRIVATE_TARGET
-     publish: /opt/build/repo/.next
-     publishOrigin: config
-   functions:
-     '*':
-       node_bundler: esbuild
-   functionsDirectory: /opt/build/repo/.ntli/site/netlify/functions
-   headers:
-     - for: /ui/*
-
-[[headers]]
-for="/ui/*"
-[headers.values]
-Access-Control-Allow-Origin="*"
-Access-Control-Allow-Headers="*"
-Access-Control-Allow-Methods="*"
-
-[functions]
-node_bundler = "esbuild"
+[build.environment]
+NEXT_USE_NETLIFY_EDGE = "true"
 
 [[plugins]]
-  package = "@netlify/plugin-nextjs"
+package = "@netlify/plugin-nextjs"
 
+[[redirects]]
+from = "/_next/static/*"
+to = "/static/:splat"
+status = 200
 
-
+[functions]
+included_files = [
+  "!node_modules/sharp/vendor/8.12.2/darwin-*/**/*",
+  "!node_modules/sharp/build/Release/sharp-darwin-*"
+]
