@@ -12,6 +12,3 @@ Access-Control-Allow-Methods="*"
 
 [functions]
 node_bundler = "esbuild"
-
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
