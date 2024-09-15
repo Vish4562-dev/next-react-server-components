@@ -1,5 +1,6 @@
 [build]
-command="ntli build -a"
+command = "npm run build"
+#command="ntli build -a"
 functions=".ntli/site/netlify/functions"
 #publish=".ntli/site/static"
 publish = ".next"
