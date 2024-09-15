@@ -1,7 +1,8 @@
 [build]
 command="ntli build -a"
 functions=".ntli/site/netlify/functions"
-publish=".ntli/site/static"
+#publish=".ntli/site/static"
+publish = ".next"
 
 [[headers]]
 for="/ui/*"
@@ -12,6 +13,9 @@ Access-Control-Allow-Methods="*"
 
 [functions]
 node_bundler = "esbuild"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
 
 
 
