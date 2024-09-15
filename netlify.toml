@@ -1,9 +1,18 @@
 [build]
-command = "npm run build"
-#command="ntli build -a"
-functions=".ntli/site/netlify/functions"
-#publish=".ntli/site/static"
-publish = ".next"
+
+     command: npm run build
+     commandOrigin: config
+     environment:
+       - DYNAMIC_CSP_BUILD_TOKEN
+       - NEXT_PRIVATE_TARGET
+     publish: /opt/build/repo/.next
+     publishOrigin: config
+   functions:
+     '*':
+       node_bundler: esbuild
+   functionsDirectory: /opt/build/repo/.ntli/site/netlify/functions
+   headers:
+     - for: /ui/*
 
 [[headers]]
 for="/ui/*"
